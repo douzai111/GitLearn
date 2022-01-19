@@ -1,0 +1,29 @@
+一、撤销还没有add的内容
+现在是凌晨两点，你正在赶一份工作报告，你在readme.txt中添加了本不应该加的一行。
+你可以删掉最后一行，手动把文件恢复到上一个版本的状态。
+方法有二：
+1. git checkout -- file可以丢弃工作区的修改：
+$ git checkout -- readme.txt   
+* git checkout -- file命令中的--很重要，没有--，就变成了“切换到另一个分支”的命令，我们在后面的分支管理中会再次遇到git checkout命令。
+2. git restore file
+$ git restore readme.txt
+
+* 命令git checkout -- readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：
+① 一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
+② 一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
+总之，就是让这个文件回到最近一次git commit或git add时的状态。
+
+二、撤销已经git add的内容
+现在假定是凌晨3点，你不但写了一些胡话，还git add到暂存区了：
+庆幸的是，在commit之前，你发现了这个问题。用git status查看一下，修改只是添加到了暂存区，还没有提交。
+首先，要把暂存区的修改撤销掉（unstage），重新放回工作区：
+方法有二：
+1. git restore方法
+$ git restore --staged readme.txt
+2. git reset方法
+$ git reset HEAD readme.txt
+* git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。
+接下来操作如第一种情况。
+
+* 现在，假设你不但改错了东西，还从暂存区提交到了版本库，怎么办呢？还记得版本回退一节吗？可以回退到上一个版本。不过，这是有条件的，就是你还没有把自己的本地版本库推送到远程。还记得Git是分布式版本
+控制系统吗？我们后面会讲到远程版本库，一旦你把stupid boss提交推送到远程版本库，你就真的惨了……

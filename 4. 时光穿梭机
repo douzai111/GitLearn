@@ -1,0 +1,16 @@
+Step 1: 修改readme文件并不要保存
+$ vi readme.txt
+进入可编辑页面之后，按下“i”即可进行编辑，改好之后，按“esc”，然后输入：wq
+
+Step 2: 查询此刻修改的状态
+$ git status
+
+Step 3: 查询修改的是哪些地方
+$ git diff readme.txt
+
+Step 4: 把修改的保存好并且添加修改的comments
+$ git add readme.txt
+$ git commit -m "add distribued"
+
+Step 5: 再次查询此刻修改的状态
+$ git status
